@@ -1,0 +1,7 @@
+# Makefile for step 5
+
+main:	main.o llist.o
+
+main.o:	llist.h main.c
+
+llist.o:	llist.h llist.c

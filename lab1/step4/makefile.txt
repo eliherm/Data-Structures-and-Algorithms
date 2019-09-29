@@ -1,0 +1,11 @@
+# Makefile for Step 4
+# This makefile has been designed to work with Linux or Cygwin.  It provides rules
+# for creating two object files (.o) from source files (.c and .h), and a rule for
+# creating an executable from the two object files.
+
+
+main:	main.o myString.o
+
+main.o:	main.c myString.h
+
+myString.o:	myString.h myString.c
