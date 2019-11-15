@@ -13,17 +13,17 @@
 // are set to 0 in the distribution.  If you check the code in main(), you will
 // see if statements that check the values.  When you set a manifest here to 1,
 // the corresponding code in main will be executed.
-#define	HEIGHT_WRITTEN	0
-#define	FINDPARENTHELPER_WRITTEN	0
+#define	HEIGHT_WRITTEN	1
+#define	FINDPARENTHELPER_WRITTEN	1
 #define	DELETE_WRITTEN	0
 //
 // *** YOU SHOULD NOT MAKE ANY OTHER CHANGES TO THIS CODE ***
 
 int main(void)
 {
-	Node	*n = NULL;		// eliminates compiler warning
+	Node *n = NULL;		// eliminates compiler warning
 	int v1 = 1;
-	Tree *t = initTree (10,&v1);
+	Tree *t = initTree (10, &v1);
 	// Note: This implementation requires that tree be initialized with first
 	// node.
 	//insert(10,&v1,t->root);

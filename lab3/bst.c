@@ -12,7 +12,6 @@
 #include <stdio.h>
 #include "bst.h"
 
-
 Node *initNode (Key k, void *v)
 // Allocate memory for new node and initialize fields.
 // Returns pointer to node created.
@@ -173,10 +172,24 @@ int height(Node *root)
 // nodes is 1 more than bigger height of node's two subtrees.
 { 
 	// your code goes here  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-	// ---<SNIP>----
+	if (root == NULL) {
+	    return -1;
+	}
 
-	// ---<SNIP>----
-	return -1;   // <<<  Remove this !!!
+	int lHeight = 0;
+    int rHeight = 0;
+
+    if (root->leftChild != NULL) {
+        lHeight = 1;
+        lHeight += height(root->leftChild);
+    }
+
+    if (root->rightChild != NULL) {
+        rHeight = 1;
+        lHeight += height(root->rightChild);
+    }
+
+    return intmax(lHeight, rHeight);
 }//height()
 
 
@@ -185,10 +198,27 @@ Node *findParentHelper (Key k, Node *root)
 // at least one child (see findParent()).
 {
 	// your code goes here  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-	// ---<SNIP>----
+	if (k < root->key) {
+	    if (root->leftChild == NULL) {
+            return NULL;
+	    }
 
-	// ---<SNIP>----
-	return NULL;  // <<<< Remove this !!
+        if (root->leftChild->key == k) {
+            return root;
+        } else {
+            return findParentHelper(k, root->leftChild);
+        }
+	} else {
+        if (root->rightChild == NULL) {
+            return NULL;
+        }
+
+        if (root->rightChild->key == k) {
+            return root;
+        } else {
+            return findParentHelper(k, root->rightChild);
+        }
+	}
 }//findparenthelper()
 
 
@@ -215,10 +245,33 @@ void delete (Node* p, Node *n)
 //	p	- points to parent of node to be deleted.
 {
 	// your code goes here  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-	// ---<SNIP>----
+	// Check if the node is a leaf
+	if ((n->leftChild == NULL) && (n->rightChild == NULL)) {
+        if (p->leftChild == n) {
+            p->leftChild = NULL;
+        } else {
+            p->rightChild = NULL;
+        }
+	}
+
+	// Check if node has only a single subtree
+	if ((n->leftChild) && (n->rightChild == NULL)) {
+	    if (p->leftChild == n) {
+	        p->leftChild = n->leftChild;
+	    } else {
+            p->rightChild = n->leftChild;
+	    }
+	} else if ((n->rightChild) && (n->leftChild == NULL)) {
+        if (p->leftChild == n) {
+            p->leftChild = n->rightChild;
+        } else {
+            p->rightChild = n->rightChild;
+        }
+	}
+
+	// Check if node has both subtrees
 
 
-	// ---<SNIP>----
 }//delete()
 
 
